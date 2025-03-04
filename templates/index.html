@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Summarizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h1 class="mb-4">Email Summarizer</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Summarize by Email ID (Testing...)</h2>
+            <form action="/summarize/" method="post">
+                <div class="mb-3">
+                    <label for="email_id" class="form-label">Enter Email ID:</label>
+                    <input type="text" id="email_id" name="email_id" class="form-control" placeholder="e.g., 507f1f77bcf86cd799439011" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Summarize by ID</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Summarize Your Own Email</h2>
+            <form action="/summarize_text/" method="post">
+                <div class="mb-3">
+                    <label for="email_text" class="form-label">Paste your email below:</label>
+                    <textarea id="email_text" name="email_text" class="form-control" rows="5" placeholder="Paste your email text here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Summarize</button>
+            </form>
+        </div>
+    </div>
+
+    {% if summary %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Summary:</h2>
+            <p class="card-text">{{ summary }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        <h2>Error:</h2>
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
